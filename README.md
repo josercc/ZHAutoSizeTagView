@@ -66,14 +66,13 @@ typora-copy-images-to: ipic
 
 3. 初始化一个自定义高度试图
 
-   ```swift
-   	let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
-		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
-			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
-			manager.tagHeight = 40
-		}
-   ```
-
+```swift
+let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
+let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
+    manager.tagTitle = ["Black Friday","11.11","Global shipping"]
+    manager.tagHeight = 40
+}
+```
    ![7D37701E-C5C6-41AF-AB5C-7787EBD9008C](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-7D37701E-C5C6-41AF-AB5C-7787EBD9008C.png)
 
 4. 设置选中状态
@@ -148,11 +147,11 @@ typora-copy-images-to: ipic
 
 10. 设置最大显示行数 0不限制
 
-   ```swift
-   public var maxLine:Int = 0
-   ```
+  ```swift
+  public var maxLine:Int = 0
+  ```
 
-   ![BD65F921-B069-4DBD-9493-49D1A83CD5B4](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-BD65F921-B069-4DBD-9493-49D1A83CD5B4.png)
+  ![BD65F921-B069-4DBD-9493-49D1A83CD5B4](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-BD65F921-B069-4DBD-9493-49D1A83CD5B4.png)
 
 11. 设置圆角大小
 

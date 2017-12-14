@@ -1,0 +1,11 @@
+framework module ZHAutoSizeTagView_iOS {
+  umbrella header "ZHAutoSizeTagView_iOS.h"
+
+  export *
+  module * { export * }
+}
+
+module ZHAutoSizeTagView_iOS.Swift {
+    header "ZHAutoSizeTagView_iOS-Swift.h"
+    requires objc
+}

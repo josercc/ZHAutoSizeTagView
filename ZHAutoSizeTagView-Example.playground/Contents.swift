@@ -9,13 +9,10 @@ class MyViewController : UIViewController {
         let view = UIView()
         view.backgroundColor = .white
 		view.frame = CGRect(x: 0, y: 0, width: 375, height: 676)
-		let frame = CGRect(x: 0, y: 20, width: 200, height: 0)
+		let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
 		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
 			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
-			manager.tagHeight = 30
-			manager.maxLine = 1
-//			manager.defaultBackgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-//			manager.selectImage = UIImage(named: "zh_autosize_tag_select_icon", in: Bundle(for: ZHAutoSizeTagManager.self), compatibleWith: nil)
+			manager.textFont = UIFont.systemFont(ofSize: 30)
 		}
 		tagView.monitorTagButtonClick = { index in
 			print(index)

@@ -11,7 +11,7 @@ import UIKit
 @objc public class ZHAutoSizeTagView: UIView {
 	var manager:ZHAutoSizeTagManager?
 	@objc public var monitorTagButtonClick:((_ index:Int) -> Void)?
-	var currentLineNumber:Int = 0
+	var currentLineNumber:Int = 1
 	var tagButtons:[UIButton] = []
 	@objc public init(frame:CGRect, block:(_ manager:ZHAutoSizeTagManager) -> Void) {
 		let configManager = ZHAutoSizeTagManager()

@@ -6,7 +6,7 @@ typora-copy-images-to: ipic
 
 自动适配大小标签试图
 
-![](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-ZHAutoSizeTagView.gif)
+![](/ZHAutoSizeTagView.gif)
 
 `ZHAutoSizeTagView`是一个基于最新的 Swift4.0语言编写的标签显示控件。
 

@@ -1,50 +1,12 @@
 Pod::Spec.new do |s|
-  s.name         = "ZHAutoSizeTagView-Developer"
-  s.version      = "1.0.0"
+  s.name         = "ZHAutoSizeTagView"
+  s.version      = "1.0.1"
   s.summary      = "标签控件 类似于京东淘宝双11 黑五 自营等标签，可以自动计算宽度或者高度 可以设置限制行数 其他信息看 reademe"
   s.homepage     = "https://github.com/josercc/ZHAutoSizeTagView"
   s.screenshots  = "http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-024428.png", "http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-024537.png"
   s.license      = "MIT"
   s.author             = { "josercc" => "josercc@163.com" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/josercc/ZHAutoSizeTagView/tree/developer.git", :tag => "#{s.version}" }
-
-
-  # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  CocoaPods is smart about how it includes source code. For source files
-  #  giving a folder will include any swift, h, m, mm, c & cpp files.
-  #  For header files it will include any header in the folder.
-  #  Not including the public_header_files will make all headers public.
-  #
-
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
-  s.exclude_files = "Classes/Exclude"
-
-  # s.public_header_files = "Classes/**/*.h"
-
-
-  # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  A list of resources included with the Pod. These are copied into the
-  #  target bundle with a build phase script. Anything else will be cleaned.
-  #  You can preserve files from being cleaned, please don't preserve
-  #  non-essential files like tests, examples and documentation.
-  #
-
-  # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
-
-  # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
-
-
-  # ――― Project Linking ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-  #
-  #  Link your library with frameworks, or libraries. Libraries do not include
-  #  the lib prefix of their name.
-  #
-
-  # s.framework  = "SomeFramework"
-  # s.frameworks = "SomeFramework", "AnotherFramework"
-
+  s.source       = { :git => "https://github.com/josercc/ZHAutoSizeTagView.git", :tag => "#{s.version}" }
+  s.vendored_frameworks = "FrameWork/ZHAutoSizeTagView_iOS.framework"
 end

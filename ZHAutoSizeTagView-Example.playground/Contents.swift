@@ -14,8 +14,8 @@ class MyViewController : UIViewController {
 			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
 			manager.tagHeight = 30
 			manager.maxLine = 1
+//			manager.defaultBackgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 //			manager.selectImage = UIImage(named: "zh_autosize_tag_select_icon", in: Bundle(for: ZHAutoSizeTagManager.self), compatibleWith: nil)
-			print(manager.selectImage)
 		}
 		tagView.monitorTagButtonClick = { index in
 			print(index)

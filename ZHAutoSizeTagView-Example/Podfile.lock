@@ -1,0 +1,12 @@
+PODS:
+  - ZHAutoSizeTagView (1.0.1)
+
+DEPENDENCIES:
+  - ZHAutoSizeTagView
+
+SPEC CHECKSUMS:
+  ZHAutoSizeTagView: ad29510ddaf8a5f67fbab8939b902623cbf5c9af
+
+PODFILE CHECKSUM: 5d11868fd8460183bab8e60d7e9dc8f80e7fedef
+
+COCOAPODS: 1.1.1

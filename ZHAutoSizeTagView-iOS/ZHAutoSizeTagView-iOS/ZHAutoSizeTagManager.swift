@@ -18,7 +18,7 @@ public class ZHAutoSizeTagManager : NSObject {
 	public var selectBoardWidth:CGFloat = 0
 	public var selectTextColor:UIColor = #colorLiteral(red: 1, green: 0.5411764706, blue: 0, alpha: 1)
 	public var selectImage:UIImage? = UIImage(named: "zh_autosize_tag_select_icon", in: Bundle(for: ZHAutoSizeTagManager.self), compatibleWith: nil)
-	public var defaultBackgroundColor:UIColor = #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1)
+	public var defaultBackgroundColor:UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
 	public var defaultBoardColor:UIColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 	public var defaultBoardWidth:CGFloat = 1
 	public var defaultTextColor:UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)

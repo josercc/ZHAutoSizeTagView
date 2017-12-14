@@ -65,6 +65,13 @@ typora-copy-images-to: ipic
    ![619E679B-18D5-4DB9-A6C8-10D99FDF1C20](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-619E679B-18D5-4DB9-A6C8-10D99FDF1C20.png)
 
 3. 初始化一个自定义高度试图
+   ```swift
+   	let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
+		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
+			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
+			manager.tagHeight = 40
+		}
+   ```
 
    ![7D37701E-C5C6-41AF-AB5C-7787EBD9008C](http://ipicimage-1251019290.coscd.myqcloud.com/2017-12-14-7D37701E-C5C6-41AF-AB5C-7787EBD9008C.png)
 

@@ -186,9 +186,30 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Wnullability"
 
 SWIFT_MODULE_NAMESPACE_PUSH("ZHAutoSizeTagView_iOS")
+@class UIColor;
+@class UIImage;
+@class UIFont;
 
 SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS20ZHAutoSizeTagManager")
 @interface ZHAutoSizeTagManager : NSObject
+@property (nonatomic, copy) NSArray<NSString *> * _Nonnull tagTitle;
+@property (nonatomic) UIEdgeInsets edge;
+@property (nonatomic) CGFloat horizontalSpance;
+@property (nonatomic) CGFloat verticalSpance;
+@property (nonatomic, strong) UIColor * _Nonnull selectBackgroundColor;
+@property (nonatomic, strong) UIColor * _Nonnull selectBoardColor;
+@property (nonatomic) CGFloat selectBoardWidth;
+@property (nonatomic, strong) UIColor * _Nonnull selectTextColor;
+@property (nonatomic, strong) UIImage * _Nullable selectImage;
+@property (nonatomic, strong) UIColor * _Nonnull defaultBackgroundColor;
+@property (nonatomic, strong) UIColor * _Nonnull defaultBoardColor;
+@property (nonatomic) CGFloat defaultBoardWidth;
+@property (nonatomic, strong) UIColor * _Nonnull defaultTextColor;
+@property (nonatomic, strong) UIImage * _Nullable defaultImage;
+@property (nonatomic) NSInteger maxLine;
+@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic, strong) UIFont * _Nonnull textFont;
+@property (nonatomic) CGFloat tagHeight;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -196,6 +217,8 @@ SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS20ZHAutoSizeTagManager")
 
 SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS17ZHAutoSizeTagView")
 @interface ZHAutoSizeTagView : UIView
+@property (nonatomic, copy) void (^ _Nullable monitorTagButtonClick)(NSInteger);
+- (nonnull instancetype)initWithFrame:(CGRect)frame block:(SWIFT_NOESCAPE void (^ _Nonnull)(ZHAutoSizeTagManager * _Nonnull))block OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end

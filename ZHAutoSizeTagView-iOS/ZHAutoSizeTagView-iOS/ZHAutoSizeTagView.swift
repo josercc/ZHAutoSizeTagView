@@ -34,10 +34,8 @@ import UIKit
 			tagButtons.append(button)
 			button.tag = e.offset
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
-//			print(startX,startY)
 			self.addSubview(button)
-//			print(currentLineNumber)
-			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber == manager.maxLine
+			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine
 			if e.offset == manager.tagTitle.count - 1 || stopDrawTagView {
 				height = button.frame.origin.y + button.frame.size.height + manager.edge.bottom
 				width = button.frame.origin.x + button.frame.size.width + manager.edge.right

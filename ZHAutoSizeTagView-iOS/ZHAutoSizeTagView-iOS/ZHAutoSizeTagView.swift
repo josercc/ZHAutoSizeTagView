@@ -10,7 +10,7 @@ import UIKit
 
 @objc public class ZHAutoSizeTagView: UIView {
 	var manager:ZHAutoSizeTagManager?
-	@objc public var monitorTagButtonClick:((_ index:Int) -> Void)?
+	@objc public var monitorTagButtonClick:((_ index:Int, _ isSelected:Bool) -> Void)?
 	var currentLineNumber:Int = 1
 	var tagButtons:[UIButton] = []
 	@objc public init(frame:CGRect, block:(_ manager:ZHAutoSizeTagManager) -> Void) {
@@ -30,7 +30,7 @@ import UIKit
 		var height:CGFloat = 0;
 		var width:CGFloat = 0
 		for e in manager.tagTitle.enumerated() {
-			let button = creatTagView(title: e.element, manager: manager)
+			let button = creatTagView(title: e.element, manager: manager, index: e.offset)
 			tagButtons.append(button)
 			button.tag = e.offset
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
@@ -80,13 +80,14 @@ import UIKit
 		return buttonFrame
 	}
 
-	func creatTagView(title:String, manager:ZHAutoSizeTagManager) -> UIButton {
+	func creatTagView(title:String, manager:ZHAutoSizeTagManager, index:Int) -> UIButton {
 		let button = UIButton(type: .custom)
 		button.setTitle(title, for: .normal)
 		button.titleLabel?.font = manager.textFont
 		button.layer.masksToBounds = true
 		button.layer.cornerRadius = manager.cornerRadius
 		button.titleLabel?.lineBreakMode = .byTruncatingTail
+		button.isSelected = manager.defaultSelectedIndex == index
 		setButtonStyle(button: button, manager: manager)
 		button.addTarget(self, action: #selector(self.tagButtonClick(sender:)), for: .touchUpInside)
 		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
@@ -106,7 +107,7 @@ import UIKit
 		guard let monitorTagButtonClick = self.monitorTagButtonClick else {
 			return
 		}
-		monitorTagButtonClick(sender.tag)
+		monitorTagButtonClick(sender.tag,sender.isSelected)
 	}
 
 	func setButtonStyle(button:UIButton, manager:ZHAutoSizeTagManager) {

@@ -13,9 +13,10 @@ class MyViewController : UIViewController {
 		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
 			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
 			manager.tagHeight = 40
+			manager.defaultSelectedIndex = 1
 		}
-		tagView.monitorTagButtonClick = { index in
-			print(index)
+		tagView.monitorTagButtonClick = { index, isSelected in
+			print(index,isSelected)
 		}
 		tagView.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 //		tagView.center = view.center

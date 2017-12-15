@@ -21,6 +21,11 @@ import UIKit
 		drawTagViews()
 	}
 
+	@objc public static func getIntrinsicContentSize(size:CGSize, block:(_ manager:ZHAutoSizeTagManager) -> Void) -> CGSize {
+		let tagView = ZHAutoSizeTagView(frame: CGRect(origin: .zero, size: size), block: block)
+		return tagView.frame.size
+	}
+
 	func drawTagViews() {
 		guard let manager = self.manager else {
 			return

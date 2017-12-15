@@ -21,6 +21,12 @@ class MyViewController : UIViewController {
 		tagView.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
 //		tagView.center = view.center
         view.addSubview(tagView)
+
+		print(ZHAutoSizeTagView.getIntrinsicContentSize(size: CGSize.init(width: 0, height: 0), block: { (manager) in
+			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
+			manager.tagHeight = 40
+			manager.defaultSelectedIndex = 1
+		}))
 		
         self.view = view
     }

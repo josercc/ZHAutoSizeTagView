@@ -210,6 +210,7 @@ SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS20ZHAutoSizeTagManager")
 @property (nonatomic) CGFloat cornerRadius;
 @property (nonatomic, strong) UIFont * _Nonnull textFont;
 @property (nonatomic) CGFloat tagHeight;
+@property (nonatomic) NSInteger defaultSelectedIndex;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -217,8 +218,9 @@ SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS20ZHAutoSizeTagManager")
 
 SWIFT_CLASS("_TtC21ZHAutoSizeTagView_iOS17ZHAutoSizeTagView")
 @interface ZHAutoSizeTagView : UIView
-@property (nonatomic, copy) void (^ _Nullable monitorTagButtonClick)(NSInteger);
+@property (nonatomic, copy) void (^ _Nullable monitorTagButtonClick)(NSInteger, BOOL);
 - (nonnull instancetype)initWithFrame:(CGRect)frame block:(SWIFT_NOESCAPE void (^ _Nonnull)(ZHAutoSizeTagManager * _Nonnull))block OBJC_DESIGNATED_INITIALIZER;
++ (CGSize)getIntrinsicContentSizeWithSize:(CGSize)size block:(SWIFT_NOESCAPE void (^ _Nonnull)(ZHAutoSizeTagManager * _Nonnull))block SWIFT_WARN_UNUSED_RESULT;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
 @end

@@ -10,8 +10,8 @@ import UIKit
 
 @objc public class ZHAutoSizeTagView: UIView {
 	var manager:ZHAutoSizeTagManager?
-	@objc public var monitorTagButtonClick:((_ index:Int) -> Void)?
-	var currentLineNumber:Int = 0
+	@objc public var monitorTagButtonClick:((_ index:Int, _ isSelected:Bool) -> Void)?
+	var currentLineNumber:Int = 1
 	var tagButtons:[UIButton] = []
 	@objc public init(frame:CGRect, block:(_ manager:ZHAutoSizeTagManager) -> Void) {
 		let configManager = ZHAutoSizeTagManager()
@@ -19,6 +19,11 @@ import UIKit
 		self.manager = configManager
 		super.init(frame:frame)
 		drawTagViews()
+	}
+
+	@objc public static func getIntrinsicContentSize(size:CGSize, block:(_ manager:ZHAutoSizeTagManager) -> Void) -> CGSize {
+		let tagView = ZHAutoSizeTagView(frame: CGRect(origin: .zero, size: size), block: block)
+		return tagView.frame.size
 	}
 
 	func drawTagViews() {
@@ -30,21 +35,17 @@ import UIKit
 		var height:CGFloat = 0;
 		var width:CGFloat = 0
 		for e in manager.tagTitle.enumerated() {
-			let button = creatTagView(title: e.element, manager: manager)
+			let button = creatTagView(title: e.element, manager: manager, index: e.offset)
 			tagButtons.append(button)
 			button.tag = e.offset
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
-//			print(startX,startY)
-			self.addSubview(button)
-//			print(currentLineNumber)
-			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber == manager.maxLine
-			if e.offset == manager.tagTitle.count - 1 || stopDrawTagView {
-				height = button.frame.origin.y + button.frame.size.height + manager.edge.bottom
-				width = button.frame.origin.x + button.frame.size.width + manager.edge.right
-			}
+			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine
 			if stopDrawTagView {
 				break
 			}
+			height = button.frame.origin.y + button.frame.size.height + manager.edge.bottom
+			width = button.frame.origin.x + button.frame.size.width + manager.edge.right
+			self.addSubview(button)
 		}
 		if self.frame.size.width > width {
 			width = self.frame.size.width
@@ -84,13 +85,14 @@ import UIKit
 		return buttonFrame
 	}
 
-	func creatTagView(title:String, manager:ZHAutoSizeTagManager) -> UIButton {
+	func creatTagView(title:String, manager:ZHAutoSizeTagManager, index:Int) -> UIButton {
 		let button = UIButton(type: .custom)
 		button.setTitle(title, for: .normal)
 		button.titleLabel?.font = manager.textFont
 		button.layer.masksToBounds = true
 		button.layer.cornerRadius = manager.cornerRadius
 		button.titleLabel?.lineBreakMode = .byTruncatingTail
+		button.isSelected = manager.defaultSelectedIndex == index
 		setButtonStyle(button: button, manager: manager)
 		button.addTarget(self, action: #selector(self.tagButtonClick(sender:)), for: .touchUpInside)
 		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
@@ -110,7 +112,7 @@ import UIKit
 		guard let monitorTagButtonClick = self.monitorTagButtonClick else {
 			return
 		}
-		monitorTagButtonClick(sender.tag)
+		monitorTagButtonClick(sender.tag,sender.isSelected)
 	}
 
 	func setButtonStyle(button:UIButton, manager:ZHAutoSizeTagManager) {

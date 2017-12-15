@@ -27,6 +27,7 @@ import UIKit
 	@objc public var cornerRadius:CGFloat = 4
 	@objc public var textFont:UIFont = UIFont.systemFont(ofSize: 12)
 	@objc public var tagHeight:CGFloat = 0
+	@objc public var defaultSelectedIndex:Int = -1
 	@objc public override init() {
 		super.init()
 	}

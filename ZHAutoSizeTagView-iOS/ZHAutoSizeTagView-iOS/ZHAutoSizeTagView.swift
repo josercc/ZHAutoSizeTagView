@@ -35,13 +35,11 @@ import UIKit
 			button.tag = e.offset
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
 			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine
-			if e.offset == manager.tagTitle.count - 1 || stopDrawTagView {
-				height = button.frame.origin.y + button.frame.size.height + manager.edge.bottom
-				width = button.frame.origin.x + button.frame.size.width + manager.edge.right
-			}
 			if stopDrawTagView {
 				break
 			}
+			height = button.frame.origin.y + button.frame.size.height + manager.edge.bottom
+			width = button.frame.origin.x + button.frame.size.width + manager.edge.right
 			self.addSubview(button)
 		}
 		if self.frame.size.width > width {

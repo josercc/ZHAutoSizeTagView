@@ -28,7 +28,7 @@ import UIKit
 	@objc public var textFont:UIFont = UIFont.systemFont(ofSize: 12)
 	@objc public var tagHeight:CGFloat = 0
 	@objc public var defaultSelectedIndex:Int = -1
-	@objc public var subTagConfigBlock:((_ index:Int) -> ZHAutoSizeSubTagConfig?)?
+	@objc public var subTagConfigBlock:((_ index:Int, _ config:ZHAutoSizeSubTagConfig) -> Void)?
 	@objc public var isUserInteractionEnabled:Bool = true
 	@objc public override init() {
 		super.init()
@@ -46,4 +46,16 @@ public class ZHAutoSizeSubTagConfig: NSObject {
 	@objc public var defaultBoardWidth:CGFloat = 1
 	@objc public var defaultTextColor:UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 	@objc public var defaultImage:UIImage?
+	@objc public init(manager:ZHAutoSizeTagManager) {
+		self.selectBackgroundColor = manager.selectBackgroundColor
+		self.selectBoardColor = manager.selectBoardColor
+		self.selectBoardWidth = manager.selectBoardWidth
+		self.selectTextColor = manager.selectTextColor
+		self.selectImage = manager.selectImage
+		self.defaultBackgroundColor = manager.defaultBackgroundColor
+		self.defaultBoardColor = manager.defaultBoardColor
+		self.defaultBoardWidth = manager.defaultBoardWidth
+		self.defaultTextColor = manager.defaultTextColor
+		self.defaultImage = manager.defaultImage
+	}
 }

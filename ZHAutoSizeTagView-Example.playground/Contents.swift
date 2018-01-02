@@ -9,11 +9,17 @@ class MyViewController : UIViewController {
         let view = UIView()
         view.backgroundColor = .white
 		view.frame = CGRect(x: 0, y: 0, width: 375, height: 676)
-		let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
+		let frame = CGRect(x: 20, y: 20, width: 100, height: 0)
 		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
 			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
-			manager.tagHeight = 40
+			manager.tagHeight = 15
 			manager.defaultSelectedIndex = 1
+			manager.subTagConfigBlock = {index,config in
+				print(index)
+				if index == 0 {
+					config.defaultTextColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+				}
+			}
 		}
 		tagView.monitorTagButtonClick = { index, isSelected in
 			print(index,isSelected)

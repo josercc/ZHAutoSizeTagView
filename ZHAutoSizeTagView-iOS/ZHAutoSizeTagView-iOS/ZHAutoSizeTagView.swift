@@ -37,7 +37,6 @@ import UIKit
 		for e in manager.tagTitle.enumerated() {
 			let button = creatTagView(title: e.element, manager: manager, index: e.offset)
 			tagButtons.append(button)
-			button.tag = e.offset
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
 			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine
 			if stopDrawTagView {
@@ -62,7 +61,7 @@ import UIKit
 		var buttonWidth = intrinsicContentSize.width + 30
 		let x = startX + buttonWidth
 		var buttonHeight = intrinsicContentSize.height
-		if buttonHeight <  manager.tagHeight{
+		if manager.tagHeight > 0 {
 			buttonHeight = manager.tagHeight
 		}
 		if maxWidth > 0 && x > maxWidth {
@@ -87,6 +86,7 @@ import UIKit
 
 	func creatTagView(title:String, manager:ZHAutoSizeTagManager, index:Int) -> UIButton {
 		let button = UIButton(type: .custom)
+		button.tag = index
 		button.setTitle(title, for: .normal)
 		button.titleLabel?.font = manager.textFont
 		button.layer.masksToBounds = true
@@ -122,18 +122,23 @@ import UIKit
 		button.layer.borderWidth = button.isSelected ? manager.selectBoardWidth : manager.defaultBoardWidth
 		button.layer.borderColor = button.isSelected ? manager.selectBoardColor.cgColor : manager.defaultBoardColor.cgColor
 		button.setImage(button.isSelected ? manager.selectImage : manager.defaultImage, for: .selected)
+		setButtonSubStyle(button: button, manager: manager)
 	}
 
 	func setButtonSubStyle(button:UIButton, manager:ZHAutoSizeTagManager) {
-		guard let config = manager.subTagConfigBlock?(button.tag) else {
+		guard let subTagConfigBlock = manager.subTagConfigBlock else {
 			return
 		}
+		let config = ZHAutoSizeSubTagConfig(manager: manager)
+		subTagConfigBlock(button.tag, config)
 		button.backgroundColor = button.isSelected ? config.selectBackgroundColor : config.defaultBackgroundColor
 		button.setTitleColor(button.isSelected ? config.selectTextColor : config.defaultTextColor, for: .normal)
 		button.layer.borderWidth = button.isSelected ? config.selectBoardWidth : config.defaultBoardWidth
 		button.layer.borderColor = button.isSelected ? config.selectBoardColor.cgColor : config.defaultBoardColor.cgColor
 		button.setImage(button.isSelected ? config.selectImage : config.defaultImage, for: .selected)
+		print("setButtonSubStyle")
 	}
+
 
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")

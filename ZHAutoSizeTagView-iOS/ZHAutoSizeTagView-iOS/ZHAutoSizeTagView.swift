@@ -96,6 +96,7 @@ import UIKit
 		setButtonStyle(button: button, manager: manager)
 		button.addTarget(self, action: #selector(self.tagButtonClick(sender:)), for: .touchUpInside)
 		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
+		button.isUserInteractionEnabled = manager.isUserInteractionEnabled
 		return button
 	}
 
@@ -121,7 +122,17 @@ import UIKit
 		button.layer.borderWidth = button.isSelected ? manager.selectBoardWidth : manager.defaultBoardWidth
 		button.layer.borderColor = button.isSelected ? manager.selectBoardColor.cgColor : manager.defaultBoardColor.cgColor
 		button.setImage(button.isSelected ? manager.selectImage : manager.defaultImage, for: .selected)
+	}
 
+	func setButtonSubStyle(button:UIButton, manager:ZHAutoSizeTagManager) {
+		guard let config = manager.subTagConfigBlock?(button.tag) else {
+			return
+		}
+		button.backgroundColor = button.isSelected ? config.selectBackgroundColor : config.defaultBackgroundColor
+		button.setTitleColor(button.isSelected ? config.selectTextColor : config.defaultTextColor, for: .normal)
+		button.layer.borderWidth = button.isSelected ? config.selectBoardWidth : config.defaultBoardWidth
+		button.layer.borderColor = button.isSelected ? config.selectBoardColor.cgColor : config.defaultBoardColor.cgColor
+		button.setImage(button.isSelected ? config.selectImage : config.defaultImage, for: .selected)
 	}
 
 	required public init?(coder aDecoder: NSCoder) {

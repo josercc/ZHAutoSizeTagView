@@ -38,7 +38,7 @@ import UIKit
 			let button = creatTagView(title: e.element, manager: manager, index: e.offset)
 			tagButtons.append(button)
 			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
-			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine
+			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine && e.offset != 0
 			if stopDrawTagView {
 				break
 			}

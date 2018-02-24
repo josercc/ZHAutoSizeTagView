@@ -9,11 +9,12 @@ class MyViewController : UIViewController {
         let view = UIView()
         view.backgroundColor = .white
 		view.frame = CGRect(x: 0, y: 0, width: 375, height: 676)
-		let frame = CGRect(x: 20, y: 20, width: 100, height: 0)
+		let frame = CGRect(x: 20, y: 20, width: 300, height: 0)
 		let tagView = ZHAutoSizeTagView(frame: frame) { (manager) in
-			manager.tagTitle = ["Black Friday","11.11","Global shipping"]
+			manager.tagTitle = ["Black Friday Black Friday Black Friday Black Friday Black Friday Black Friday Black Friday","11.11","Global shipping"]
 			manager.tagHeight = 15
 			manager.defaultSelectedIndex = 1
+            manager.maxLine = 1
 			manager.subTagConfigBlock = {index,config in
 				print(index)
 				if index == 0 {

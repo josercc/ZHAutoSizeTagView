@@ -10,9 +10,10 @@ import UIKit
 
 @objc public class ZHAutoSizeTagView: UIView {
 	var manager:ZHAutoSizeTagManager?
-	@objc public var monitorTagButtonClick:((_ index:Int, _ isSelected:Bool) -> Void)?
+    @objc public var monitorTagButtonClick:((_ index:Int, _ isSelected:Bool, _ view:ZHAutoSizeTagView) -> Void)?
 	var currentLineNumber:Int = 1
 	var tagButtons:[UIButton] = []
+    @objc public var currentMultipleIndex:[Int] = []
 	@objc public init(frame:CGRect, block:(_ manager:ZHAutoSizeTagManager) -> Void) {
 		let configManager = ZHAutoSizeTagManager()
 		block(configManager)
@@ -37,7 +38,12 @@ import UIKit
 		for e in manager.tagTitle.enumerated() {
 			let button = creatTagView(title: e.element, manager: manager, index: e.offset)
 			tagButtons.append(button)
-			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: button.intrinsicContentSize, startX: &startX, startY: &startY, manager: manager)
+            var size = button.frame.size
+            print(size)
+            if size == CGSize.zero {
+                size = button.intrinsicContentSize
+            }
+			button.frame = getButtonIntrinsicFrame(intrinsicContentSize: size, startX: &startX, startY: &startY, manager: manager)
 			let stopDrawTagView = manager.maxLine > 0 && currentLineNumber > manager.maxLine && e.offset != 0
 			if stopDrawTagView {
 				break
@@ -87,58 +93,96 @@ import UIKit
 	func creatTagView(title:String, manager:ZHAutoSizeTagManager, index:Int) -> UIButton {
 		let button = UIButton(type: .custom)
 		button.tag = index
-		button.setTitle(title, for: .normal)
-		button.titleLabel?.font = manager.textFont
-		button.layer.masksToBounds = true
-		button.layer.cornerRadius = manager.cornerRadius
-		button.titleLabel?.lineBreakMode = .byTruncatingTail
-		button.isSelected = manager.defaultSelectedIndex == index
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = manager.cornerRadius
+        button.isSelected = manager.defaultSelectedIndex == index
+        if button.isSelected {
+            self.currentMultipleIndex.append(button.tag)
+            updateDisableButton()
+        }
+        let config = ZHAutoSizeSubTagConfig(manager: manager)
+        if let subTagConfigBlock = manager.subTagConfigBlock {
+            subTagConfigBlock(button.tag,config)
+        }
+        if config.isUseImage {
+            if let subTagImageConfigBlock = config.subTagImageConfigBlock {
+                subTagImageConfigBlock(button,title)
+            }
+            button.frame = CGRect(x: 0, y: 0, width: config.imageSize.width, height: config.imageSize.height)
+        } else {
+            button.setTitle(title, for: .normal)
+            button.titleLabel?.font = manager.textFont
+            button.titleLabel?.lineBreakMode = .byTruncatingTail
+        }
 		setButtonStyle(button: button, manager: manager)
 		button.addTarget(self, action: #selector(self.tagButtonClick(sender:)), for: .touchUpInside)
-		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
-		button.isUserInteractionEnabled = manager.isUserInteractionEnabled
+		button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+        button.isUserInteractionEnabled = config.isUseImage ? false : manager.isUserInteractionEnabled
+        button.imageView?.contentMode = .scaleAspectFit
 		return button
 	}
 
 	@objc func tagButtonClick(sender:UIButton) {
+        guard let manager = self.manager else {
+            return
+        }
+        let canSlected = !manager.isSupportMultipleChoice || self.currentMultipleIndex.count < manager.maxMultipleCount
+        if !canSlected && !sender.isSelected {
+            return
+        }
 		sender.isSelected = !sender.isSelected
-		if let manager = self.manager {
-			for button in tagButtons {
-				if button != sender {
-					button.isSelected = false
-				}
-				setButtonStyle(button: button, manager: manager)
-			}
-		}
+        if !manager.isSupportMultipleChoice {
+            for button in tagButtons {
+                if button != sender {
+                    button.isSelected = false
+                    setButtonStyle(button: button, manager: manager)
+                }
+                
+            }
+        }
+        setButtonStyle(button: sender, manager: manager)
+        if sender.isSelected {
+            self.currentMultipleIndex.append(sender.tag)
+        } else {
+            if let index = self.currentMultipleIndex.index(of: sender.tag) {
+                self.currentMultipleIndex.remove(at: index)
+            }
+        }
+        updateDisableButton()
 		guard let monitorTagButtonClick = self.monitorTagButtonClick else {
 			return
 		}
-		monitorTagButtonClick(sender.tag,sender.isSelected)
+		monitorTagButtonClick(sender.tag,sender.isSelected,self)
 	}
+    
+    func updateDisableButton() {
+//        guard let manager = self.manager else {
+//            return
+//        }
+//        guard self.currentMultipleIndex.count < manager.maxMultipleCount else {
+//            return
+//        }
+//        for button in self.tagButtons {
+//            button.isEnabled = self.currentMultipleIndex.contains(button.tag)
+//        }
+        
+    }
 
 	func setButtonStyle(button:UIButton, manager:ZHAutoSizeTagManager) {
-		button.backgroundColor = button.isSelected ? manager.selectBackgroundColor : manager.defaultBackgroundColor
-		button.setTitleColor(button.isSelected ? manager.selectTextColor : manager.defaultTextColor, for: .normal)
-		button.layer.borderWidth = button.isSelected ? manager.selectBoardWidth : manager.defaultBoardWidth
-		button.layer.borderColor = button.isSelected ? manager.selectBoardColor.cgColor : manager.defaultBoardColor.cgColor
-		button.setImage(button.isSelected ? manager.selectImage : manager.defaultImage, for: .selected)
-		setButtonSubStyle(button: button, manager: manager)
-	}
+        let config = ZHAutoSizeSubTagConfig(manager: manager)
+        if let subTagConfigBlock = manager.subTagConfigBlock {
+            subTagConfigBlock(button.tag,config)
+        }
+        button.layer.borderWidth = button.isSelected ? config.selectBoardWidth : config.defaultBoardWidth
+        button.layer.borderColor = button.isSelected ? config.selectBoardColor.cgColor : config.defaultBoardColor.cgColor
+        guard !config.isUseImage else {
+            return
+        }
+        button.backgroundColor = button.isSelected ? config.selectBackgroundColor : config.defaultBackgroundColor
+        button.setTitleColor(button.isSelected ? config.selectTextColor : config.defaultTextColor, for: .normal)
 
-	func setButtonSubStyle(button:UIButton, manager:ZHAutoSizeTagManager) {
-		guard let subTagConfigBlock = manager.subTagConfigBlock else {
-			return
-		}
-		let config = ZHAutoSizeSubTagConfig(manager: manager)
-		subTagConfigBlock(button.tag, config)
-		button.backgroundColor = button.isSelected ? config.selectBackgroundColor : config.defaultBackgroundColor
-		button.setTitleColor(button.isSelected ? config.selectTextColor : config.defaultTextColor, for: .normal)
-		button.layer.borderWidth = button.isSelected ? config.selectBoardWidth : config.defaultBoardWidth
-		button.layer.borderColor = button.isSelected ? config.selectBoardColor.cgColor : config.defaultBoardColor.cgColor
-		button.setImage(button.isSelected ? config.selectImage : config.defaultImage, for: .selected)
-		print("setButtonSubStyle")
+        button.setImage(button.isSelected ? config.selectImage : config.defaultImage, for: .selected)
 	}
-
 
 	required public init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")

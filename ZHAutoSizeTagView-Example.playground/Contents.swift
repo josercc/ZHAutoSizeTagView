@@ -14,15 +14,24 @@ class MyViewController : UIViewController {
 			manager.tagTitle = ["Black Friday Black Friday Black Friday Black Friday Black Friday Black Friday Black Friday","11.11","Global shipping"]
 			manager.tagHeight = 15
 			manager.defaultSelectedIndex = 1
-            manager.maxLine = 1
+//            manager.maxLine = 1
+            manager.isSupportMultipleChoice = true
+            manager.maxMultipleCount = 2
 			manager.subTagConfigBlock = {index,config in
-				print(index)
 				if index == 0 {
 					config.defaultTextColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-				}
+                } else if index == 1 {
+                    config.isUseImage = true
+                    config.imageSize = CGSize(width: 100, height: 15)
+                    config.subTagImageConfigBlock = {button , imageURL in
+                        print(imageURL)
+                        button.setBackgroundImage(#imageLiteral(resourceName: "image"), for: UIControlState.normal)
+                    }
+                }
+                
 			}
 		}
-		tagView.monitorTagButtonClick = { index, isSelected in
+		tagView.monitorTagButtonClick = { index, isSelected, view in
 			print(index,isSelected)
 		}
 		tagView.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)

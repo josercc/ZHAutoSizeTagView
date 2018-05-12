@@ -30,6 +30,8 @@ import UIKit
 	@objc public var defaultSelectedIndex:Int = -1
 	@objc public var subTagConfigBlock:((_ index:Int, _ config:ZHAutoSizeSubTagConfig) -> Void)?
 	@objc public var isUserInteractionEnabled:Bool = true
+    @objc public var isSupportMultipleChoice = false
+    @objc public var maxMultipleCount = NSNotFound
 	@objc public override init() {
 		super.init()
 	}
@@ -46,6 +48,9 @@ public class ZHAutoSizeSubTagConfig: NSObject {
 	@objc public var defaultBoardWidth:CGFloat = 1
 	@objc public var defaultTextColor:UIColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
 	@objc public var defaultImage:UIImage?
+    @objc public var isUseImage:Bool = false
+    @objc public var imageSize = CGSize.zero
+    @objc public var subTagImageConfigBlock:((_ tagButton:UIButton, _ imageURL:String) -> Void)?
 	@objc public init(manager:ZHAutoSizeTagManager) {
 		self.selectBackgroundColor = manager.selectBackgroundColor
 		self.selectBoardColor = manager.selectBoardColor

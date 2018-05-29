@@ -1,0 +1,18 @@
+PODS:
+  - ZHAutoSizeTagView (2.0.0):
+    - ZHAutoSizeTagView/Source (= 2.0.0)
+  - ZHAutoSizeTagView/Source (2.0.0)
+
+DEPENDENCIES:
+  - ZHAutoSizeTagView (from `../ZHAutoSizeTagView.podspec`)
+
+EXTERNAL SOURCES:
+  ZHAutoSizeTagView:
+    :path: "../ZHAutoSizeTagView.podspec"
+
+SPEC CHECKSUMS:
+  ZHAutoSizeTagView: 683bd7a9134828186a8032c2fbdef6687b66f35b
+
+PODFILE CHECKSUM: bcc5d7643e653a08c29b08ae522f16db19bffa11
+
+COCOAPODS: 1.1.1

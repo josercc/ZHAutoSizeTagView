@@ -1,0 +1,6 @@
+framework module ZHAutoSizeTagView {
+  umbrella header "ZHAutoSizeTagView-umbrella.h"
+
+  export *
+  module * { export * }
+}

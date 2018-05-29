@@ -26,11 +26,11 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     @podName => ["#{@baseSourcePath}/images/*.{png}"]
   }
-  # s.prepare_command =  <<-CMD
-  # touch Cartfile
-  # echo 'git "git@#{@baseURL}:#{@basePath}.git" == #{@version}' > Cartfile
-  # Carthage update --platform iOS
-  # CMD
+  s.prepare_command =  <<-CMD
+  touch Cartfile
+  echo 'git "git@#{@baseURL}:#{@basePath}.git" == #{@version}' > Cartfile
+  Carthage update --platform iOS
+  CMD
   s.default_subspecs = 'Source'
 
 end

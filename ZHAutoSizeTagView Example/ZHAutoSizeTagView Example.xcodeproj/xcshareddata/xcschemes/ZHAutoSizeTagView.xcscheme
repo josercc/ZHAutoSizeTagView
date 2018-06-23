@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5DCC084620A68F1900705BFC"
-               BuildableName = "SOAZHAutoSizeTagView.framework"
-               BlueprintName = "SOAZHAutoSizeTagView"
-               ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+               BuildableName = "ZHAutoSizeTagView.framework"
+               BlueprintName = "ZHAutoSizeTagView"
+               ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,9 +48,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DCC084620A68F1900705BFC"
-            BuildableName = "SOAZHAutoSizeTagView.framework"
-            BlueprintName = "SOAZHAutoSizeTagView"
-            ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+            BuildableName = "ZHAutoSizeTagView.framework"
+            BlueprintName = "ZHAutoSizeTagView"
+            ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DCC084620A68F1900705BFC"
-            BuildableName = "SOAZHAutoSizeTagView.framework"
-            BlueprintName = "SOAZHAutoSizeTagView"
-            ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+            BuildableName = "ZHAutoSizeTagView.framework"
+            BlueprintName = "ZHAutoSizeTagView"
+            ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

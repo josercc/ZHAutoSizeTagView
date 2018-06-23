@@ -1,5 +1,5 @@
 @version = "2.0.1"
-@podName = "SOAZHAutoSizeTagView"
+@podName = "ZHAutoSizeTagView"
 @baseURL = "github.com"
 @basePath = "josercc/ZHAutoSizeTagView"
 @baseSourcePath = "#{@podName} Example/#{@podName}"

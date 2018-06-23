@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5DAE4EA420A59836004F2753"
-               BuildableName = "SOAZHAutoSizeTagView Example.app"
-               BlueprintName = "SOAZHAutoSizeTagView Example"
-               ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+               BuildableName = "ZHAutoSizeTagView Example.app"
+               BlueprintName = "ZHAutoSizeTagView Example"
+               ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,9 +34,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAE4EA420A59836004F2753"
-            BuildableName = "SOAZHAutoSizeTagView Example.app"
-            BlueprintName = "SOAZHAutoSizeTagView Example"
-            ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+            BuildableName = "ZHAutoSizeTagView Example.app"
+            BlueprintName = "ZHAutoSizeTagView Example"
+            ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAE4EA420A59836004F2753"
-            BuildableName = "SOAZHAutoSizeTagView Example.app"
-            BlueprintName = "SOAZHAutoSizeTagView Example"
-            ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+            BuildableName = "ZHAutoSizeTagView Example.app"
+            BlueprintName = "ZHAutoSizeTagView Example"
+            ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5DAE4EA420A59836004F2753"
-            BuildableName = "SOAZHAutoSizeTagView Example.app"
-            BlueprintName = "SOAZHAutoSizeTagView Example"
-            ReferencedContainer = "container:SOAZHAutoSizeTagView Example.xcodeproj">
+            BuildableName = "ZHAutoSizeTagView Example.app"
+            BlueprintName = "ZHAutoSizeTagView Example"
+            ReferencedContainer = "container:ZHAutoSizeTagView Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -95,7 +95,10 @@ import UIKit
 		button.tag = index
         button.layer.masksToBounds = true
         button.layer.cornerRadius = manager.cornerRadius
-        button.isSelected = manager.defaultSelectedIndex == index
+		if manager.defaultSelectedIndexs.count == 0 {
+			manager.defaultSelectedIndexs = [manager.defaultSelectedIndex]
+		}
+		button.isSelected = manager.defaultSelectedIndexs.contains(button.tag)
         if button.isSelected {
             self.currentMultipleIndex.append(button.tag)
             updateDisableButton()

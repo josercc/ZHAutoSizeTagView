@@ -28,6 +28,7 @@ import UIKit
 	@objc public var textFont:UIFont = UIFont.systemFont(ofSize: 12)
 	@objc public var tagHeight:CGFloat = 0
 	@objc public var defaultSelectedIndex:Int = -1
+	@objc public var defaultSelectedIndexs:[Int] = []
 	@objc public var subTagConfigBlock:((_ index:Int, _ config:ZHAutoSizeSubTagConfig) -> Void)?
 	@objc public var isUserInteractionEnabled:Bool = true
     @objc public var isSupportMultipleChoice = false

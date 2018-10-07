@@ -1,4 +1,4 @@
-@version = "2.1.0"
+@version = "2.1.1"
 @podName = "ZHAutoSizeTagView"
 @baseURL = "github.com"
 @basePath = "josercc/ZHAutoSizeTagView"
@@ -34,24 +34,5 @@ Pod::Spec.new do |s|
     @podName => "#{@baseSourcePath}/images/*.{png}"
   }
 
-#   @subspec_config = [
-#     "UIStyleComponent",
-#     "UIStyleButton"
-#   ]
-#   @subspec_dependency = {
-#     "UIStyleButton" => ["#{@podName}/UIStyleComponent"],
-#   }
-#   @subspec_config.each { |subspecName|
-#     s.subspec subspecName do |n|
-#       n.source_files = "#{@baseSourcePath}/#{subspecName}/#{@baseFilePath}"
-#       @subspec_dependency.each { |name,list|
-#         if name == subspecName
-#           list.each { |e|
-#             n.dependency e
-#           }
-#         end
-#       }
-#     end
-#   }
 
 end

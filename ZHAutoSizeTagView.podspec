@@ -19,15 +19,15 @@ Pod::Spec.new do |s|
   s.subspec 'Source' do |source|
     source.source_files = @source_files
   end
-  s.subspec 'Framework' do |framework|
-    framework.vendored_frameworks = "Carthage/build/iOS/#{@frameworkName}.framework"
+#   s.subspec 'Framework' do |framework|
+#     framework.vendored_frameworks = "Carthage/build/iOS/#{@frameworkName}.framework"
 
-  end
-  s.prepare_command =  <<-CMD
-  touch Cartfile
-  echo 'git "git@#{@baseURL}:#{@basePath}.git" == #{@version}' > Cartfile
-  Carthage update --platform iOS
-  CMD
+#   end
+#   s.prepare_command =  <<-CMD
+#   touch Cartfile
+#   echo 'git "git@#{@baseURL}:#{@basePath}.git" == #{@version}' > Cartfile
+#   Carthage update --platform iOS
+#   CMD
   s.default_subspecs = 'Source'
 
   s.resource_bundles = {
